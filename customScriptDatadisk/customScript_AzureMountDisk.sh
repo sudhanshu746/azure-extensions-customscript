@@ -17,7 +17,7 @@ echo "upstart config file already created"
 exit;
 else
 cat <<EOF >> $CONF_FILE
-# mount CIFS share
+# mount  HDFS Data Disk
 
 start on filesystem  and net-device-up IFACE!=lo
 stop on runlevel [!2345]
@@ -30,7 +30,6 @@ for disk in ${ALL_DATA_DISKS};do
 if [ -z "$($MOUNT|grep ${disk})" ]; then
 		MOUNT_DIR="/mnt/data0${INCR}"
 		MOUNT_CMD="/bin/mount -t ext4 /dev/${disk} $MOUNT_DIR"
-		MOUNT_DIR="/MNT/DATA0${INCR}"
 		# Creating mount directory with permission
 		$MKDIR ${MOUNT_DIR} && $CHMOD -R 755 ${MOUNT_DIR} ;
 		# Format disk with EXT4 filesystem
