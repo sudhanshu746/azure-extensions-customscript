@@ -1,6 +1,12 @@
 #!/bin/bash -xv
-
+#############################################################
+# Author :Sudhanshu  Sharma
+# Created : 23/10/2017
+# The Script is created to execute via  az vm extension set.
+# KINDLY DONOT EXECUTE SCRIPT DIRECTLY
+#############################################################
 #-----
+
 MKDIR=/bin/mkdir
 LSBLK=/bin/lsblk
 CHMOD=/bin/chmod
@@ -11,7 +17,7 @@ ALL_DATA_DISKS=$($LSBLK --nodeps -n -o NAME,TYPE,MAJ:MIN|awk '{split($NF,a,":");
 
 CONF_FILE='/etc/init/mount-data-disk.conf'
 
-INCR=0
+INCR=$1
 if test -s ${CONF_FILE};then
 echo "upstart config file already created"
 exit;
